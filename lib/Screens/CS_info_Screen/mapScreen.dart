@@ -650,12 +650,10 @@ class _MapScreenState extends State<MapScreen> {
                                   );
                                 } else {
                                   CoolAlert.show(
-                                    context: context,
-                                    type: CoolAlertType.error,
-                                    text: 'Please use filter first ! ',
-                                    autoCloseDuration:
-                                        const Duration(seconds: 5),
-                                  );
+                                      context: context,
+                                      type: CoolAlertType.error,
+                                      text: 'Please use filter first ! ',
+                                      cancelBtnText: 'Ok');
                                   // _showAlertDialog(context, 'Alert !! ',
                                   //     'Please Click on Filter to enter necessary information ');
                                 }
@@ -709,20 +707,102 @@ class _MapScreenState extends State<MapScreen> {
                             },
                             markers: dataProvider.markers,
                           ),
-                          FloatingActionButton(
-                            onPressed: () async {
-                              await showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                      content: openFilterModal(
-                                          context,
-                                          dataProvider
-                                              .currentLocation?.latitude,
-                                          dataProvider
-                                              .currentLocation?.longitude)));
-                            },
-                            child: const Text('Filter'),
-                          )
+                          // FloatingActionButton(
+                          //   onPressed: () async {
+                          //     await showDialog(
+                          //         context: context,
+                          //         builder: (context) => AlertDialog(
+                          //             shape: RoundedRectangleBorder(
+                          //               side: const BorderSide(
+                          //                   color: Colors.blue,
+                          //                   width: 0.7), // Blue border color
+                          //               borderRadius: BorderRadius.circular(
+                          //                   10.0), // Adjust border radius as needed
+                          //             ),
+                          //             backgroundColor: Colors.black,
+                          //             content: openFilterModal(
+                          //                 context,
+                          //                 dataProvider
+                          //                     .currentLocation?.latitude,
+                          //                 dataProvider
+                          //                     .currentLocation?.longitude)));
+                          //   },
+                          //   child: const Text('Filter'),
+                          // )
+                          Positioned(
+                            top: 50.0,
+                            left: 20.0,
+                            right: 20.0,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.8),
+                                      borderRadius: BorderRadius.circular(25.0),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0),
+                                    // Search bar
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextField(
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                            decoration: InputDecoration(
+                                              hintText: 'Search...',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.white
+                                                      .withOpacity(1)),
+                                              border: InputBorder.none,
+                                              prefixIcon: const Icon(
+                                                Icons.search,
+                                                color: Colors.blue,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(
+                                            Icons.filter_alt_outlined,
+                                            color: Colors.blue,
+                                          ),
+                                          onPressed: () async {
+                                            await showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          side: const BorderSide(
+                                                              color:
+                                                                  Colors.blue,
+                                                              width:
+                                                                  0.7), // Blue border color
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                  10.0), // Adjust border radius as needed
+                                                        ),
+                                                        backgroundColor:
+                                                            Colors.black,
+                                                        content: openFilterModal(
+                                                            context,
+                                                            dataProvider
+                                                                .currentLocation
+                                                                ?.latitude,
+                                                            dataProvider
+                                                                .currentLocation
+                                                                ?.longitude)));
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ])
                       : const LoadingWidget(text: 'Map')
                   :
@@ -743,26 +823,90 @@ class _MapScreenState extends State<MapScreen> {
                               markers: dataProvider.markers,
                               polylines: dataProvider.pPoints,
                             ),
-                            FloatingActionButton(
-                              onPressed: () {
-                                setState(() {
-                                  pPoints = {};
-                                });
-                                dataProvider.pPoints = {};
-                                dataProvider.polyLineDone = false;
+                            // FloatingActionButton(
+                            //   onPressed: () {
+                            //     setState(() {
+                            //       pPoints = {};
+                            //     });
+                            //     dataProvider.pPoints = {};
+                            //     dataProvider.polyLineDone = false;
 
-                                dataProvider.stateOfCharge = null;
-                                dataProvider.vehBrand = null;
-                                dataProvider.vehModel = null;
-                                dataProvider.showReset = true;
-                              },
-                              child: const Text('Reset'),
-                            ),
+                            //     dataProvider.stateOfCharge = null;
+                            //     dataProvider.vehBrand = null;
+                            //     dataProvider.vehModel = null;
+                            //     dataProvider.showReset = true;
+                            //   },
+                            //   child: const Text('Reset'),
+                            // ),
                             Positioned(
-                                right: 20.0,
-                                top: 20.0,
-                                child:
-                                    Text('The Range is ${dataProvider.range}'))
+                              top: 50.0,
+                              left: 20.0,
+                              right: 20.0,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.8),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12.0),
+                                      // Search bar
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: TextField(
+                                              style: const TextStyle(
+                                                  color: Colors.white),
+                                              decoration: InputDecoration(
+                                                hintText: 'Search...',
+                                                hintStyle: TextStyle(
+                                                    color: Colors.white
+                                                        .withOpacity(1)),
+                                                border: InputBorder.none,
+                                                prefixIcon: const Icon(
+                                                  Icons.search,
+                                                  color: Colors.blue,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          IconButton(
+                                            icon: const Icon(
+                                              Icons.refresh_sharp,
+                                              color: Colors.blue,
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                pPoints = {};
+                                                dataProvider.pPoints = {};
+                                                dataProvider.polyLineDone =
+                                                    false;
+
+                                                dataProvider.stateOfCharge =
+                                                    null;
+                                                dataProvider.vehBrand = null;
+                                                dataProvider.vehModel = null;
+                                                dataProvider.allowToNavigate =
+                                                    false;
+                                                dataProvider.showReset = true;
+                                              });
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // Positioned(
+                            //     right: 20.0,
+                            //     top: 20.0,
+                            //     child:
+                            //         Text('The Range is ${dataProvider.range}'))
                           ],
                         )
                       : const LoadingWidget(

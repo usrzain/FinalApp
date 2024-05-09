@@ -106,9 +106,10 @@ class _Booking2State extends State<Booking2> {
                     children: [
                       Expanded(
                         child: RangeSlider(
-                          values: RangeValues(currentCharge,
-                              _currentRangeValues.end), // Fix initial value
-                          min: currentCharge, // Set minimum value explicitly
+                          values: RangeValues(
+                              currentCharge, _currentRangeValues.end),
+                          // Fix initial value
+                          min: 0, // Set minimum value explicitly
                           max: 100,
                           divisions: 100,
                           labels: RangeLabels(
@@ -120,6 +121,7 @@ class _Booking2State extends State<Booking2> {
                               _currentRangeValues = values;
                             });
                           },
+
                           activeColor: Colors.blue,
                           inactiveColor: Colors.grey,
                         ),

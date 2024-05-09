@@ -45,6 +45,49 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
+  void fetchingUserDetails() async {
+    User? LoggedinUser = FirebaseAuth.instance.currentUser;
+
+    dynamic email = LoggedinUser!.email;
+    final emailQuery = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: email)
+        .get();
+
+    for (var doc in emailQuery.docs) {
+      final userData = doc.data();
+      // Access specific user details using keys in the map
+      final name = userData['username'];
+      final email =
+          userData['email']; // This will be the same email used in the query
+
+      final brand = userData['defaultBrand'];
+      final model = userData['defaultModel'];
+      // final contFav = userData.containsKey('favorites');
+      // final contBook = userData.containsKey('bookings');
+
+      // Provider.of<chDataProvider>(context, listen: false).userData =
+      //     Map.from(userData);
+
+      // Access other user details based on field names
+      // Map<String, dynamic>? fetchUser = {'email': email, 'username': name};
+      Provider.of<chDataProvider>(context, listen: false).userEmail = email;
+      Provider.of<chDataProvider>(context, listen: false).userName = name;
+
+      Provider.of<chDataProvider>(context, listen: false).defaultBrand = brand;
+      Provider.of<chDataProvider>(context, listen: false).defaultModel = model;
+      Provider.of<chDataProvider>(context, listen: false).hasSeenTheIntro =
+          true;
+      Provider.of<chDataProvider>(context, listen: false).chargingStations = {};
+      Provider.of<chDataProvider>(context, listen: false)
+          .initialLoadingComplete = true;
+      // Provider.of<chDataProvider>(context, listen: false).profileFetchingDone =
+      //     true;
+      // Provider.of<chDataProvider>(context, listen: false)
+      //     .userFetchDuringOrAfterLogin = true;
+    }
+  }
+
   void setCurrentLocation(chDataProvider localprovider) async {
     print('Setting Location starts');
     Provider.of<chDataProvider>(context, listen: false).currentLocation =
@@ -109,12 +152,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (prefs.get('_hasSeenIntroSignupKey') != null) {
       // It shows that user has seen the Intro
+      // Then run this to get the user's details for Default things
+      fetchingUserDetails();
       _hasSeenIntroSignupKey = true;
-      Provider.of<chDataProvider>(context, listen: false).hasSeenTheIntro =
-          true;
-      Provider.of<chDataProvider>(context, listen: false).chargingStations = {};
-      Provider.of<chDataProvider>(context, listen: false)
-          .initialLoadingComplete = true;
+      // Setting in fetchingUserDetails function
+      // Provider.of<chDataProvider>(context, listen: false).hasSeenTheIntro =
+      //     true;
+      // Provider.of<chDataProvider>(context, listen: false).chargingStations = {};
+      // Provider.of<chDataProvider>(context, listen: false)
+      //     .initialLoadingComplete = true;
     } else {
       _hasSeenIntroSignupKey = false;
       Provider.of<chDataProvider>(context, listen: false).hasSeenTheIntro =
