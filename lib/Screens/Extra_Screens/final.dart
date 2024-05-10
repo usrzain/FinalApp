@@ -1,13 +1,14 @@
 // ignore_for_file: unused_import, unnecessary_import, avoid_init_to_null, non_constant_identifier_names, unused_local_variable, no_leading_underscores_for_local_identifiers, empty_catches
 
-import 'package:effecient/navBar/colors/colors.dart';
+import 'package:cool_alert/cool_alert.dart';
+import 'package:EvNav/navBar/colors/colors.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:provider/provider.dart';
-import 'package:effecient/Providers/chData.dart';
+import 'package:EvNav/Providers/chData.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:typed_data';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -71,6 +72,8 @@ class _BookingState extends State<Booking> with TickerProviderStateMixin {
     DateTime futureTime = now.add(durationToAdd);
     String arrivalTime = futureTime.toString().substring(11, 16);
     bool allowToBook = false;
+    dynamic key =
+        Provider.of<chDataProvider>(context, listen: false).selectedKey;
     return Stack(children: [
       Scaffold(
         appBar: AppBar(
@@ -466,8 +469,12 @@ class _BookingState extends State<Booking> with TickerProviderStateMixin {
                   ElevatedButton(
                     onPressed: () {
                       if (_selectedCharge != null) {
-                        Map<String, dynamic> object = stationList['CS1'];
+                        Map<String, dynamic> object = stationList['${key}'];
                         String Title = object['title'];
+                        print('Charging Station to be updated ');
+                        print(object);
+                        print('Title-------------------');
+                        print(Title);
                         String tokenNum =
                             Provider.of<chDataProvider>(context, listen: false)
                                 .generateRandomNumber();
@@ -688,7 +695,12 @@ class _BookingState extends State<Booking> with TickerProviderStateMixin {
                           },
                         );
                       } else {
-                        selectAlert(context);
+                        CoolAlert.show(
+                          context: context,
+                          type: CoolAlertType.error,
+                          text:
+                              'Please Select a type of Charging for proper cost calculation',
+                        );
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -811,13 +823,23 @@ class _BookingState extends State<Booking> with TickerProviderStateMixin {
       Map<String, dynamic> object = stationList[key];
       int newValue = 0;
       if (object['available_slots'] == 0) {
+        print('Previous queue  Value  ');
+        print(object['queue']);
+
         newValue = object['queue'] + 1;
         // Update the specific key with the new value
         await _databaseReference.update({'queue': newValue});
+        print('New  queue Value-------------------');
+        print(newValue);
       } else {
+        print('Previous  available_slots Value  ');
+        print(object['available_slots']);
+
         newValue = object['available_slots'] - 1;
         // Update the specific key with the new value
         await _databaseReference.update({'available_slots': newValue});
+        print('New available_slots Value-------------------');
+        print(newValue);
       }
     } catch (error) {}
   }

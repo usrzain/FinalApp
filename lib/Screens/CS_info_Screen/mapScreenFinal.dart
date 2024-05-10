@@ -25,12 +25,12 @@ import 'package:provider/provider.dart';
 import 'package:random_uuid_string/random_uuid_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:effecient/Providers/chData.dart';
-import 'package:effecient/Providers/favStation.dart';
-import 'package:effecient/Screens/CS_info_Screen/extraFun.dart';
-import 'package:effecient/Screens/CS_info_Screen/mapFunctions.dart';
-import 'package:effecient/Screens/CS_info_Screen/polyLine_Response.dart';
-import 'package:effecient/Screens/Extra_Screens/booking.dart';
+import 'package:EvNav/Providers/chData.dart';
+import 'package:EvNav/Providers/favStation.dart';
+import 'package:EvNav/Screens/CS_info_Screen/extraFun.dart';
+import 'package:EvNav/Screens/CS_info_Screen/mapFunctions.dart';
+import 'package:EvNav/Screens/CS_info_Screen/polyLine_Response.dart';
+import 'package:EvNav/Screens/Extra_Screens/booking.dart';
 
 class MapScreenFinal extends StatefulWidget {
   const MapScreenFinal({Key? key}) : super(key: key);

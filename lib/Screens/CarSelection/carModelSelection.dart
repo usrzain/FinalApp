@@ -1,8 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api, unused_local_variable, empty_catches
 
 import 'package:cool_alert/cool_alert.dart';
-import 'package:effecient/Screens/CarSelection/detailsScreen.dart';
-import 'package:effecient/Screens/PortSelection/EvPortSelectionScreen.dart';
+import 'package:EvNav/Screens/CarSelection/detailsScreen.dart';
+import 'package:EvNav/Screens/PortSelection/EvPortSelectionScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -40,6 +40,7 @@ class _CarModelSelectionState extends State<CarModelSelection> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 120.0, // Adjust the height as needed
         title: const Text(
           'Select Model',

@@ -2,7 +2,7 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:effecient/Screens/Intro/intro_widget.dart';
+import 'package:EvNav/Screens/Intro/intro_widget.dart';
 
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override

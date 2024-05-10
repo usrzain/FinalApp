@@ -1,11 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'package:effecient/Providers/chData.dart';
-import 'package:effecient/Screens/CS_info_Screen/mapScreen.dart';
-import 'package:effecient/Screens/Extra_Screens/bookHistory.dart';
-import 'package:effecient/Screens/Extra_Screens/favourites.dart';
-import 'package:effecient/Screens/Extra_Screens/profile.dart';
-import 'package:effecient/Screens/CS_info_Screen/mapScreenFinal.dart';
+import 'package:EvNav/Providers/chData.dart';
+import 'package:EvNav/Screens/CS_info_Screen/mapScreen.dart';
+import 'package:EvNav/Screens/Extra_Screens/bookHistory.dart';
+import 'package:EvNav/Screens/Extra_Screens/favourites.dart';
+import 'package:EvNav/Screens/Extra_Screens/profile.dart';
+import 'package:EvNav/Screens/CS_info_Screen/mapScreenFinal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

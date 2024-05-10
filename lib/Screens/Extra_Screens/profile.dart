@@ -2,8 +2,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cool_alert/cool_alert.dart';
-import 'package:effecient/Auth/loginPage.dart';
-import 'package:effecient/Providers/chData.dart';
+import 'package:EvNav/Auth/loginPage.dart';
+import 'package:EvNav/Providers/chData.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

@@ -7,12 +7,12 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:cool_alert/cool_alert.dart';
-import 'package:effecient/Auth/loginPage.dart';
-import 'package:effecient/Providers/favStation.dart';
-import 'package:effecient/Screens/CS_info_Screen/extraFun.dart';
-import 'package:effecient/Screens/CS_info_Screen/mapFunctions.dart';
-import 'package:effecient/Screens/CS_info_Screen/polyLine_Response.dart';
-import 'package:effecient/Screens/Extra_Screens/booking.dart';
+import 'package:EvNav/Auth/loginPage.dart';
+import 'package:EvNav/Providers/favStation.dart';
+import 'package:EvNav/Screens/CS_info_Screen/extraFun.dart';
+import 'package:EvNav/Screens/CS_info_Screen/mapFunctions.dart';
+import 'package:EvNav/Screens/CS_info_Screen/polyLine_Response.dart';
+import 'package:EvNav/Screens/Extra_Screens/booking.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/services.dart';
@@ -20,7 +20,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:effecient/Providers/chData.dart';
+import 'package:EvNav/Providers/chData.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +31,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -242,7 +243,7 @@ class _MapScreenState extends State<MapScreen> {
   // Creating Markers
 
   // Setting Markers
-  settingMarkers(chDataProvider localprovider, title, lati, long, slotsText,
+  settingMarkers(chDataProvider localprovider, title, lati, long, int slotsText,
       distance, time, queue, price, address, chrgType, fav, key) {
     localprovider.markers.add(
       Marker(
@@ -262,7 +263,7 @@ class _MapScreenState extends State<MapScreen> {
             ),
             builder: (BuildContext context) {
               return Container(
-                  height: 400, // Adjust the height as needed
+                  height: 430, // Adjust the height as needed
 
                   decoration: BoxDecoration(
                     color: Colors.black87,
@@ -640,7 +641,8 @@ class _MapScreenState extends State<MapScreen> {
                                   localprovider.selectedLongitude = Longitude;
                                   localprovider.selectedStation = Title;
                                   localprovider.selectedKey = key;
-
+                                  // print('Selected KEy');
+                                  // print(localprovider.selectedKey);
                                   Navigator.of(context)
                                       .pop(); // Close the bottom sheet
 
@@ -1447,7 +1449,7 @@ class _MapScreenState extends State<MapScreen> {
 
                                 dataProvider.range = calculate_Range;
 
-                                dataProvider.showRange = calculate_Range * 1000;
+                                dataProvider.showRange = calculate_Range;
 
                                 requestForBestCS(
                                     currentLAT,
@@ -1591,6 +1593,14 @@ class _MapScreenState extends State<MapScreen> {
 
         Provider.of<chDataProvider>(context, listen: false).pPoints = pPoints;
         Provider.of<chDataProvider>(context, listen: false).polyLineDone = true;
+        AnimatedSnackBar.rectangle(
+          'Your Range is ',
+          '${Provider.of<chDataProvider>(context, listen: false).showRange} Km',
+          type: AnimatedSnackBarType.success,
+          brightness: Brightness.light,
+        ).show(
+          context,
+        );
       }
     } catch (e) {}
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:effecient/Auth/SignupPage.dart';
+import 'package:EvNav/Auth/SignupPage.dart';
 
 class IntroWidget extends StatelessWidget {
   const IntroWidget({

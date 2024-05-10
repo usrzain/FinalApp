@@ -1,11 +1,11 @@
 // ignore_for_file: unused_local_variable, use_key_in_widget_constructors, library_private_types_in_public_api
 
-import 'package:effecient/Providers/chData.dart';
+import 'package:EvNav/Providers/chData.dart';
 import 'package:flutter/material.dart';
-import 'package:effecient/navBar/colors/colors.dart';
-import 'package:effecient/navBar/font.dart';
-import 'package:effecient/navBar/navBar.dart';
-import 'package:effecient/tab_contents.dart';
+import 'package:EvNav/navBar/colors/colors.dart';
+import 'package:EvNav/navBar/font.dart';
+import 'package:EvNav/navBar/navBar.dart';
+import 'package:EvNav/tab_contents.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +21,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  late final AnimationController _controller;
   int selectBtn = 0;
 
   @override
@@ -46,7 +47,13 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
+      // appBar: AppBar(
+      //   elevation: 0, // <-- hide the AppBar
+      //   shadowColor: null,
+      //   backgroundColor: Colors.transparent,
+      //   automaticallyImplyLeading: false, // <-- prevent automatic back button
+      // ),
+
       body: Stack(
         children: [
           if (_tabController.index == 0) Tab1Content(),
@@ -62,6 +69,25 @@ class _HomePageState extends State<HomePage>
         ],
       ),
     );
+
+    // Scaffold(
+    //   appBar: AppBar(actions: []),
+    //   backgroundColor: bgColor,
+    //   body: Stack(
+    //     children: [
+    //       if (_tabController.index == 0) Tab1Content(),
+    //       if (_tabController.index == 1) Tab2Content(),
+    //       if (_tabController.index == 3) Tab3Content(),
+    //       if (_tabController.index == 4) const Tab4Content(),
+    //       Positioned(
+    //         left: 0,
+    //         right: 0,
+    //         bottom: 0,
+    //         child: navigationBar(),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 
   AnimatedContainer navigationBar() {
@@ -73,7 +99,7 @@ class _HomePageState extends State<HomePage>
       height: 70.0,
       duration: const Duration(milliseconds: 20),
       decoration: BoxDecoration(
-        color: grey,
+        color: Colors.grey[800],
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(selectBtn == 0 ? 0.0 : 20.0),
           topRight:

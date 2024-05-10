@@ -1,9 +1,9 @@
 // ignore_for_file: use_build_context_synchronously, avoid_print, use_key_in_widget_constructors, library_private_types_in_public_api, unused_field, unused_local_variable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:effecient/Auth/HomePage.dart';
-import 'package:effecient/Providers/chData.dart';
-import 'package:effecient/Screens/Intro/intro_screen.dart';
+import 'package:EvNav/Auth/HomePage.dart';
+import 'package:EvNav/Providers/chData.dart';
+import 'package:EvNav/Screens/Intro/intro_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -26,6 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<List<Map<String, dynamic>>>? models;
   @override
   void initState() {
+    Provider.of<chDataProvider>(context, listen: false).initialLoadingComplete =
+        false;
     chDataProvider localprovider =
         Provider.of<chDataProvider>(context, listen: false);
     Provider.of<chDataProvider>(context, listen: false).markers.clear();
@@ -33,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
         false;
     super.initState();
 
-    fetchCollectionData('manufacturer', 'model');
+    // fetchCollectionData('manufacturer', 'model');
     setCurrentLocation(localprovider);
 
     // Simulate some initialization delay (replace with actual initialization)
@@ -45,9 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
-  void fetchingUserDetails() async {
-    User? LoggedinUser = FirebaseAuth.instance.currentUser;
-
+  void fetchingUserDetails(User? LoggedinUser) async {
     dynamic email = LoggedinUser!.email;
     final emailQuery = await FirebaseFirestore.instance
         .collection('users')
@@ -78,6 +78,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Provider.of<chDataProvider>(context, listen: false).defaultModel = model;
       Provider.of<chDataProvider>(context, listen: false).hasSeenTheIntro =
           true;
+      print('Bhai Data has been set again------------------------ ');
       Provider.of<chDataProvider>(context, listen: false).chargingStations = {};
       Provider.of<chDataProvider>(context, listen: false)
           .initialLoadingComplete = true;
@@ -148,27 +149,38 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> checkFirstTime() async {
-    final SharedPreferences prefs = await _prefs;
-
-    if (prefs.get('_hasSeenIntroSignupKey') != null) {
-      // It shows that user has seen the Intro
-      // Then run this to get the user's details for Default things
-      fetchingUserDetails();
-      _hasSeenIntroSignupKey = true;
-      // Setting in fetchingUserDetails function
-      // Provider.of<chDataProvider>(context, listen: false).hasSeenTheIntro =
-      //     true;
-      // Provider.of<chDataProvider>(context, listen: false).chargingStations = {};
-      // Provider.of<chDataProvider>(context, listen: false)
-      //     .initialLoadingComplete = true;
+    User? LoggedinUser = FirebaseAuth.instance.currentUser;
+    if (LoggedinUser != null) {
+      print('Bhai current Logged in hain');
+      fetchingUserDetails(LoggedinUser);
     } else {
-      _hasSeenIntroSignupKey = false;
-      Provider.of<chDataProvider>(context, listen: false).hasSeenTheIntro =
-          false;
+      print('Bhai current Logged NHI  hain');
+      Provider.of<chDataProvider>(context, listen: false).loggedInUser = null;
       Provider.of<chDataProvider>(context, listen: false)
           .initialLoadingComplete = true;
-      // prefs.setBool('_hasSeenIntroSignupKey', false);
     }
+    // final SharedPreferences prefs = await _prefs;
+
+    // if (prefs.get('_hasSeenIntroSignupKey') != null) {
+    //   // It shows that user has seen the Intro
+    //   // Then run this to get the user's details for Default things
+    //   // fetchingUserDetails();
+    //   _hasSeenIntroSignupKey = true;
+    //   // Setting in fetchingUserDetails function
+    //   // Provider.of<chDataProvider>(context, listen: false).hasSeenTheIntro =
+    //   //     true;
+    //   // Provider.of<chDataProvider>(context, listen: false).chargingStations = {};
+    //   // Provider.of<chDataProvider>(context, listen: false)
+    //   //     .initialLoadingComplete = true;
+    // } else {
+    //   _hasSeenIntroSignupKey = false;
+    //   Provider.of<chDataProvider>(context, listen: false).hasSeenTheIntro =
+    //       false;
+    //   print('Else Wali run kr rhi hai');
+    //   Provider.of<chDataProvider>(context, listen: false)
+    //       .initialLoadingComplete = true;
+    //   // prefs.setBool('_hasSeenIntroSignupKey', false);
+    // }
   }
 
   @override

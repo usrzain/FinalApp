@@ -2,11 +2,11 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cool_alert/cool_alert.dart';
-import 'package:effecient/Providers/chData.dart';
+import 'package:EvNav/Providers/chData.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:effecient/Auth/SignupPage.dart';
-import 'package:effecient/Auth/HomePage.dart';
+import 'package:EvNav/Auth/SignupPage.dart';
+import 'package:EvNav/Auth/HomePage.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -207,6 +207,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _loginWithEmailAndPassword() async {
+    FocusScope.of(context).unfocus();
     try {
       final userCredential = await _auth.signInWithEmailAndPassword(
         email: _emailController.text,

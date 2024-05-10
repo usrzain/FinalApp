@@ -1,14 +1,14 @@
-import 'package:effecient/Auth/HomePage.dart';
-import 'package:effecient/Auth/loginPage.dart';
-import 'package:effecient/99Data.dart';
-import 'package:effecient/Providers/favStation.dart';
-import 'package:effecient/Screens/Extra_Screens/booking.dart';
-import 'package:effecient/Screens/Extra_Screens/profile.dart';
-import 'package:effecient/Screens/Intro/SplashScreen.dart';
-import 'package:effecient/WelcomePage.dart';
-import 'package:effecient/99dependency_injection.dart';
-import 'package:effecient/navBar/99animatedNavBar.dart';
-import 'package:effecient/tab_contents.dart';
+import 'package:EvNav/Auth/HomePage.dart';
+import 'package:EvNav/Auth/loginPage.dart';
+import 'package:EvNav/99Data.dart';
+import 'package:EvNav/Providers/favStation.dart';
+import 'package:EvNav/Screens/Extra_Screens/booking.dart';
+import 'package:EvNav/Screens/Extra_Screens/profile.dart';
+import 'package:EvNav/Screens/Intro/SplashScreen.dart';
+import 'package:EvNav/WelcomePage.dart';
+import 'package:EvNav/99dependency_injection.dart';
+import 'package:EvNav/navBar/99animatedNavBar.dart';
+import 'package:EvNav/tab_contents.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +16,17 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
-import 'package:effecient/Providers/chData.dart';
+import 'package:EvNav/Providers/chData.dart';
 import 'package:connectivity/connectivity.dart';
 
-import 'package:effecient/Screens/CarSelection/carSelection.dart';
+import 'package:EvNav/Screens/CarSelection/carSelection.dart';
 
-import 'package:effecient/Screens/CarSelection/carSelect.dart';
+import 'package:EvNav/Screens/CarSelection/carSelect.dart';
 //import 'package:effecient/Screens/Extra_Screens/intro1.dart';
 
-import 'package:effecient/Screens/Intro/intro_screen.dart';
+import 'package:EvNav/Screens/Intro/intro_screen.dart';
 
-import 'package:effecient/Screens/PortSelection/EvPortSelectionScreen.dart';
+import 'package:EvNav/Screens/PortSelection/EvPortSelectionScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,6 +52,9 @@ void main() async {
     ],
     child: MyApp(
       initialScreen: SplashScreen(),
+
+      // For Navigationbar checking
+      // initialScreen: BottonNavWithAnimatedIcons(),
     ), // Your app's main widget
   ));
   // DependencyInjection.init();

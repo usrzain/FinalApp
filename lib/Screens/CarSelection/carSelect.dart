@@ -1,6 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:effecient/Screens/CarSelection/carSelection.dart';
+import 'package:EvNav/Screens/CarSelection/carSelection.dart';
 import 'package:flutter/material.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -19,6 +19,7 @@ class _CarSelectState extends State<CarSelect> {
       appBar:
           //preferredSize: Size.fromHeight(80), // Adjust the height as needed
           AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 150.0, // Adjust the height as needed
         backgroundColor: Colors.black,
 

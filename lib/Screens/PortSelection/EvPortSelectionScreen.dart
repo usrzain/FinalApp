@@ -1,6 +1,6 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, library_private_types_in_public_api
 
-import 'package:effecient/Screens/CarSelection/detailsScreen.dart';
+import 'package:EvNav/Screens/CarSelection/detailsScreen.dart';
 import 'package:flutter/material.dart';
 
 class EvPortSelectionScreen extends StatefulWidget {
@@ -31,6 +31,7 @@ class _EvPortSelectionScreenState extends State<EvPortSelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 120.0, // Adjust the height as needed
         title: const Text(
           'Select EV Port Type',

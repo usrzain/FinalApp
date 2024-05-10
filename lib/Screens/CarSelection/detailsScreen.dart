@@ -1,8 +1,8 @@
 // ignore_for_file: unnecessary_import, use_key_in_widget_constructors, library_private_types_in_public_api, non_constant_identifier_names, empty_catches
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:effecient/Auth/HomePage.dart';
-import 'package:effecient/Providers/chData.dart';
+import 'package:EvNav/Auth/HomePage.dart';
+import 'package:EvNav/Providers/chData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +38,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 120.0, // Adjust the height as needed
         title: const Text(
           'Selected EV',

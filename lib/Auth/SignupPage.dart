@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:effecient/Auth/loginPage.dart';
-import 'package:effecient/Providers/chData.dart';
-import 'package:effecient/Screens/CarSelection/carSelect.dart';
+import 'package:EvNav/Auth/loginPage.dart';
+import 'package:EvNav/Providers/chData.dart';
+import 'package:EvNav/Screens/CarSelection/carSelect.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -74,6 +74,7 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   Future<void> _register() async {
+    FocusScope.of(context).unfocus();
     final String username = _usernameController.text.trim();
     final String email = _emailController.text.trim();
     final String password = _passwordController.text.trim();
