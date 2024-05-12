@@ -1593,12 +1593,14 @@ class _MapScreenState extends State<MapScreen> {
 
         Provider.of<chDataProvider>(context, listen: false).pPoints = pPoints;
         Provider.of<chDataProvider>(context, listen: false).polyLineDone = true;
-        AnimatedSnackBar.rectangle(
-          'Your Range is ',
-          '${Provider.of<chDataProvider>(context, listen: false).showRange} Km',
-          type: AnimatedSnackBarType.success,
-          brightness: Brightness.light,
-        ).show(
+        int calRange = Provider.of<chDataProvider>(context, listen: false)
+            .showRange
+            .toInt();
+
+        AnimatedSnackBar.rectangle('Your Range is ', '${calRange} Km',
+                type: AnimatedSnackBarType.success,
+                duration: Duration(seconds: 2))
+            .show(
           context,
         );
       }

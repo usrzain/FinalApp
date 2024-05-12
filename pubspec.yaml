@@ -61,19 +61,20 @@ dependencies:
   connectivity: ^3.0.6
   rive: ^0.13.4
   animated_snack_bar: ^0.4.0
+  
+  flutter_hicons: ^0.1.0
+  
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/pin-point_9537049-removebg-preview.png"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  # flutter_launcher_icons: "^0.13.1"
+ 
 
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/pin-point_9537049.png"
-  flutter_lints: ^2.0.0
-  animate_do: ^3.3.3
-  auto_size_text: ^3.0.0
+
 
 flutter:
   uses-material-design: true

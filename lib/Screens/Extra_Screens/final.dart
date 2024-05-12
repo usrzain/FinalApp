@@ -343,7 +343,7 @@ class _BookingState extends State<Booking> with TickerProviderStateMixin {
                     children: [
                       const SizedBox(width: 8),
                       Text(
-                        '∴  Cost of 1kwh for normal charge is Rs $costperkwh',
+                        '∴  Cost of 1kwh for normal charge is Rs ${(costperkwh).toInt()}',
                         style: const TextStyle(
                           fontSize: 12.0,
                           color: Colors.grey,
@@ -357,7 +357,7 @@ class _BookingState extends State<Booking> with TickerProviderStateMixin {
                     padding:
                         const EdgeInsets.only(left: 22), // Add left padding
                     child: Text(
-                      'Cost of 1kwh for fast charge is Rs ${(costperkwh + (costperkwh * 5 / 100))}',
+                      'Cost of 1kwh for fast charge is Rs ${(costperkwh + (costperkwh * 15 / 100)).toInt()}',
                       style: const TextStyle(
                         fontSize: 12.0,
                         color: Colors.grey,

@@ -231,8 +231,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       icon = Icons.exit_to_app;
                       break;
                     case 3:
-                      title = "Delete Account";
-                      icon = Icons.delete_outline;
+                      title = "About This App";
+                      icon = Icons.assignment_outlined;
                       break;
                     default:
                       title = "";
@@ -293,7 +293,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           );
 
                           break;
-                        case "Delete Account":
+                        case "About This App":
+                          Credits(context);
                           break;
                         // default:
                         //   title = "";
@@ -347,7 +348,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       // Show "Select Model" and "Select Brand" only when "Extra" is selected
                       const Text('Default EV',
                           style: TextStyle(
-                              fontSize: 22, color: Colors.blueAccent)),
+                              fontSize: 18, color: Colors.blueAccent)),
                       const SizedBox(height: 20),
                       const Text(
                         'Select Brand :',
@@ -824,6 +825,94 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   '     - Discover more about the team behind the EV Nav app.\n'
                   '     - Learn about our mission and commitment to sustainable transportation.\n\n',
                   style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text(
+                'OK',
+                style:
+                    TextStyle(color: Colors.blue), // Set the text color to blue
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> Credits(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(color: Colors.blue, width: 0.8),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          content: const SingleChildScrollView(
+            // Wrap content with SingleChildScrollView
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "App Credits",
+                  style: TextStyle(
+                    fontSize: 18, // larger font size for headings
+                    fontWeight: FontWeight.bold, // bolder font for headings
+                    color: Colors.white,
+                  ),
+                ),
+                Divider(), // adds a horizontal line
+                Text(
+                  "Developed by:\n"
+                  "Zain Ilyas\n"
+                  "Zohaib Ilyas",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "Special Thanks",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Divider(),
+                Text(
+                  "Professor Dr. Haroon Rasheed",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "Copyright",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Divider(),
+                Text(
+                  "© 2024 Zain Ilyas and Zohaib Ilyas. All rights reserved.",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                  ),
                 ),
               ],
             ),

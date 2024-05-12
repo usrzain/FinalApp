@@ -428,19 +428,19 @@ class chDataProvider extends ChangeNotifier {
   double getKwhForOnePercent() {
     switch (vehBrand) {
       case 'Tesla':
-        return 0.12;
+        return 0.0853;
       case 'BMW':
-        return 0.10;
+        return 0.1033;
 
       default:
-        return 0.8; // Indicate an unknown vehicle type
+        return 0.063; // Indicate an unknown vehicle type
     }
   }
 
   double arrivalBattery() {
-    double teslaKwhPerKm = 0.2;
-    double bmwKwhPerKm = 0.24;
-    double hondaKwhPerKm = 0.3;
+    double teslaKwhPerKm = 0.14;
+    double bmwKwhPerKm = 0.185;
+    double hondaKwhPerKm = 0.178;
     double vehKwhPerKm = 0.0;
     switch (vehBrand) {
       case 'Tesla':
