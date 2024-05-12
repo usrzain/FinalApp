@@ -91,22 +91,33 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void setCurrentLocation(chDataProvider localprovider) async {
     print('Setting Location starts');
+    // 24.888876, 67.076841
+    // 24.870655, 67.081176
+    // 24.878364, 67.099544
+    // 24.902306, 67.069846
+
+    LocationData manualLocation = LocationData.fromMap({
+      'latitude': 24.888876, // replace with your latitude
+      'longitude': 67.076841, // replace with your longitude
+    });
+    // Provider.of<chDataProvider>(context, listen: false).currentLocation =
+    //     manualLocation;
     Provider.of<chDataProvider>(context, listen: false).currentLocation =
         await _location.getLocation();
     setState(() {
       // here error
       localprovider.markers.clear();
-      localprovider.markers.add(Marker(
-        markerId: const MarkerId('current_location'),
-        position: LatLng(
-          localprovider.currentLocation?.latitude ?? 0.0,
-          localprovider.currentLocation?.longitude ?? 0.0,
-        ),
-        infoWindow: const InfoWindow(title: 'Your Location'),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+      // localprovider.markers.add(Marker(
+      //   markerId: const MarkerId('current_location'),
+      //   position: LatLng(
+      //     localprovider.currentLocation?.latitude ?? 0.0,
+      //     localprovider.currentLocation?.longitude ?? 0.0,
+      //   ),
+      //   infoWindow: const InfoWindow(title: 'Your Location'),
+      //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
 
-        // icon: VehicleIcon),
-      ));
+      //   // icon: VehicleIcon),
+      // ));
 
       print('------------------Setting Location end-----------');
       print('Markers are');

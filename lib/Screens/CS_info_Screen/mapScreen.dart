@@ -65,6 +65,7 @@ class _MapScreenState extends State<MapScreen> {
 
   late Timer _timer;
   String? selectedValue;
+  GlobalKey _globalKey = GlobalKey();
 
   @override
   void initState() {
@@ -217,6 +218,18 @@ class _MapScreenState extends State<MapScreen> {
   void _createMarkers(chDataProvider localprovider) {
     setState(() {
       // here error
+      localprovider.markers.clear();
+      localprovider.markers.add(Marker(
+        markerId: const MarkerId('current_location'),
+        position: LatLng(
+          localprovider.currentLocation?.latitude ?? 0.0,
+          localprovider.currentLocation?.longitude ?? 0.0,
+        ),
+        infoWindow: const InfoWindow(title: 'Your Location'),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+
+        // icon: VehicleIcon),
+      ));
 
       for (var key in localprovider.chargingStations.keys) {
         String title = localprovider.chargingStations[key]['title'];
@@ -693,6 +706,7 @@ class _MapScreenState extends State<MapScreen> {
         children: [
           // Consumer widget displaying content based on loading2
           Consumer<chDataProvider>(
+            key: _globalKey, // Use the GlobalKey here
             builder: (context, dataProvider, child) {
               return dataProvider.showReset
                   // If Reset is true then show simple Map
@@ -918,6 +932,12 @@ class _MapScreenState extends State<MapScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void didUpdateWidget(MapScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _globalKey.currentState?.dispose(); // Dispose of the previous widget
   }
 
   Widget openFilterModal(

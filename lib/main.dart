@@ -163,7 +163,7 @@ class _noInternetState extends State<noInternet> {
               color: Colors.red,
             ),
             Text(
-              'No internet connection!',
+              'No internet connection!  and  Please turn On the Location',
               style: TextStyle(fontSize: 20.0),
             ),
           ],
