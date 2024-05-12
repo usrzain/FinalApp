@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import, unnecessary_import, avoid_init_to_null, non_constant_identifier_names, unused_local_variable, no_leading_underscores_for_local_identifiers, empty_catches
 
+import 'package:EvNav/Screens/Extra_Screens/invoice.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:EvNav/navBar/colors/colors.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -483,6 +484,14 @@ class _BookingState extends State<Booking> with TickerProviderStateMixin {
                           isBillOpen = true; // Open the bill
                         });
 
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled:
+                              true, // Allow content to scroll if needed
+                          builder: (context) =>
+                              BottomSheetWidget(), // Your widget to display
+                        );
+
                         showDialog(
                           barrierDismissible:
                               false, // Prevent dismissing by tapping outside
@@ -842,5 +851,34 @@ class _BookingState extends State<Booking> with TickerProviderStateMixin {
         print(newValue);
       }
     } catch (error) {}
+  }
+}
+
+class BottomSheetWidget extends StatelessWidget {
+  final String? chargingStation;
+  final int? slotno;
+  final String? chrgtype;
+  final String? time;
+  final int? totalCost;
+  BottomSheetWidget(
+      {Key? key,
+      this.chargingStation,
+      this.slotno,
+      this.chrgtype,
+      this.time,
+      this.totalCost})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: MediaQuery.of(context).viewInsets.bottom +
+            MediaQuery.of(context).size.height, // Full-screen height
+        color: Colors.white, // Set background color if needed
+        child: DetailScreen(
+            chargingStation: chargingStation,
+            slotno: slotno,
+            chrgtype: chrgtype,
+            time: time,
+            totalCost: totalCost));
   }
 }
